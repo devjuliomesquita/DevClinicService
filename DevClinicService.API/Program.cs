@@ -1,4 +1,9 @@
+using DevClinicService.Infrastructure.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Injeção de depedência
+builder.Services.AddSingleton<DevClinicServiceContext>();
 
 // Add services to the container.
 

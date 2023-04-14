@@ -46,13 +46,8 @@ namespace DevClinicService.Core.Entities
             CPF = cfp;
             Password = password;
         }
-        public void IsSpecialtyDoctor(AddDoctorInputModel model)
+        public void IsSpecialtyDoctor()
         {
-            FirstName = model.FirstName;
-            LastName = model.LastName;
-            Email = model.Email;
-            CPF = model.CPF;
-            Password = model.Password;
             IsSpecialty = true;
         }
     }

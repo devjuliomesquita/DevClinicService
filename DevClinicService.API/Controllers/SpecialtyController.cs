@@ -1,4 +1,6 @@
 ﻿using DevClinicService.Application.InputModels;
+using DevClinicService.Core.Entities;
+using DevClinicService.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +10,19 @@ namespace DevClinicService.API.Controllers
     [ApiController]
     public class SpecialtyController : ControllerBase
     {
+        private readonly DevClinicServiceContext _context;
+        public SpecialtyController(DevClinicServiceContext context)
+        {
+            _context = context;
+        }
         [HttpPost]
         public IActionResult Post(int id, AddSpecialtyInputModel model)
         {
+            var doctor = _context.Users.SingleOrDefault(d =>  d.Id == id);
+            if(doctor == null) { NotFound(); }
+            var specialty = new UserSpecialty(
+                id,
+                model.Description);
             return Ok();
         }
     }

@@ -8,7 +8,7 @@ namespace DevClinicService.Application.InputModels
 {
     public record UpdateDoctorInputModel(
         string FirstName,
-        string lastName,
+        string LastName,
         string Email,
         string CPF,
         string Password)
