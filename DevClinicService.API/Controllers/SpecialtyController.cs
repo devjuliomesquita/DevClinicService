@@ -18,11 +18,12 @@ namespace DevClinicService.API.Controllers
         [HttpPost]
         public IActionResult Post(int id, AddSpecialtyInputModel model)
         {
-            var doctor = _context.Users.SingleOrDefault(d =>  d.Id == id);
-            if(doctor == null) { NotFound(); }
+            var doctor = _context.Users.Where(c => c.IsSpecialty == true).SingleOrDefault(c => c.Id == id);
+            if (doctor == null) { NotFound(); }
             var specialty = new UserSpecialty(
                 id,
                 model.Description);
+            doctor!.Specialties.Add(specialty);
             return Ok();
         }
     }

@@ -18,14 +18,14 @@ namespace DevClinicService.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var doctors = _context.Users.Select(d => d.IsSpecialty == true);
+            var doctors = _context.Users.Where(c => c.IsSpecialty == true);
             return Ok(doctors);
         }
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var doctor = _context.Users.FirstOrDefault(d => d.Id == id);
-            if(doctor == null) { return NotFound(); }
+            var doctor = _context.Users.Where(c => c.IsSpecialty == true).SingleOrDefault(c => c.Id == id);
+            if (doctor == null) { return NotFound(); }
             return Ok(doctor);
         }
         [HttpPost]
@@ -44,7 +44,7 @@ namespace DevClinicService.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, UpdateDoctorInputModel model)
         {
-            var doctor = _context.Users.FirstOrDefault(d => d.Id == id);
+            var doctor = _context.Users.Where(c => c.IsSpecialty == true).SingleOrDefault(c => c.Id == id);
             if (doctor == null) { return NotFound(); }
             doctor.Update(
                 model.FirstName,
