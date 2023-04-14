@@ -12,7 +12,11 @@ namespace DevClinicService.Infrastructure.Persistence
         public DevClinicServiceContext()
         {
             Users = new List<User>();
+            Services = new List<Service>();
+            Specialtys = new List<UserSpecialty>();
         }
         public List<User> Users { get; set; }
+        public List<Service> Services { get; set; }
+        public List<UserSpecialty> Specialtys { get; set; }
     }
 }
