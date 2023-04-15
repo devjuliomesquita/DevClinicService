@@ -20,10 +20,8 @@ namespace DevClinicService.API.Controllers
         {
             var doctor = _context.Users.Where(c => c.IsSpecialty == true).SingleOrDefault(c => c.Id == id);
             if (doctor == null) { NotFound(); }
-            var specialty = new UserSpecialty(
-                id,
-                model.Description);
-            doctor!.Specialties.Add(specialty);
+            
+            
             return Ok();
         }
     }

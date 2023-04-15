@@ -21,6 +21,8 @@ namespace DevClinicService.Core.Entities
             Active = true;
             IsSpecialty = false;
             Specialties = new List<UserSpecialty>();
+            ClientService = new List<Service>();
+            DoctorService = new List<Service>();
         }
 
         public string FirstName { get; private set; }
@@ -32,6 +34,8 @@ namespace DevClinicService.Core.Entities
         public bool Active { get; private set; }
         public bool IsSpecialty { get; private set; }
         public List<UserSpecialty> Specialties { get; private set; }
+        public List<Service> ClientService { get; private set; }
+        public List<Service> DoctorService { get; private set; }
 
         public void Update(
         string firstName,

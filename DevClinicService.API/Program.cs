@@ -1,9 +1,16 @@
 using DevClinicService.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Chave de conecxão
+var conectionStrings = builder.Configuration.GetConnectionString("DataBase");
+
 //Injeção de depedência
-builder.Services.AddSingleton<DevClinicServiceContext>();
+builder.Services.AddDbContext<DevClinicServiceContext>(options =>
+    options.UseSqlServer(conectionStrings));
+
+//Injeção de dependência do padrão repository
 
 // Add services to the container.
 

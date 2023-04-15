@@ -8,16 +8,14 @@ namespace DevClinicService.Core.Entities
 {
     public class UserSpecialty : BaseEntity
     {
-        public UserSpecialty(int idUser, string description)
+        public UserSpecialty(int idUser, int idSpecialty)
         {
             IdUser = idUser;
-            Description = description;
-
-            CreatedAt = DateTime.Now;
+            IdSpecialty = idSpecialty;
+            
         }
 
         public int IdUser { get; private set; }
-        public DateTime CreatedAt { get; private set; }
-        public string Description { get; private set; }
+        public int IdSpecialty { get; private set; }
     }
 }
