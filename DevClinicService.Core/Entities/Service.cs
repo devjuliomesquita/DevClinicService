@@ -9,22 +9,24 @@ namespace DevClinicService.Core.Entities
 {
     public class Service : BaseEntity
     {
-        public Service(int idCLient, int idDoctor, string tokenService )
+        public Service(int idClient, int idDoctor, string tokenService )
         {
-            IdClient = idCLient;
+            IdClient = idClient;
             IdDoctor = idDoctor;
             TokenService = tokenService;
 
             CreatedAt = DateTime.Now;
-            Status = EnumServiceStatus.InProgress;
+            Status = EnumServiceStatus.Created;
 
         }
         public DateTime CreatedAt { get; private set; }
+
+        public DateTime StartedAt { get; private set; }
         public DateTime FinishedAt { get; private set; }
         public int IdClient { get; private set; }
-        public User Client { get; private set; }
+        public User? Client { get; private set; }
         public int IdDoctor { get; private set; }
-        public User Doctor { get; private set; }
+        public User? Doctor { get; private set; }
         public string TokenService { get; private set; }
         public EnumServiceStatus Status { get; private set; }
 
@@ -33,6 +35,14 @@ namespace DevClinicService.Core.Entities
             if( Status == EnumServiceStatus.InProgress )
             {
                 Status = EnumServiceStatus.Cancelled;
+            }
+        }
+        public void Start()
+        {
+            if( Status == EnumServiceStatus.Created)
+            {
+                Status = EnumServiceStatus.InProgress;
+                StartedAt = DateTime.Now;
             }
         }
         public void Finish()

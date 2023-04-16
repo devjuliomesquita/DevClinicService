@@ -8,9 +8,10 @@ namespace DevClinicService.Core.Enums
 {
     public enum EnumServiceStatus
     {
-        InProgress = 0,
-        Cancelled = 1,
-        Finished = 2
+        Created = 0,
+        InProgress = 1,
+        Cancelled = 2,
+        Finished = 3
 
     }
 }

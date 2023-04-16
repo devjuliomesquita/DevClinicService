@@ -54,6 +54,10 @@ namespace DevClinicService.Core.Entities
         {
             IsSpecialty = true;
         }
+        public void UserCancel()
+        {
+            Active = false;
+        }
     }
 
     
