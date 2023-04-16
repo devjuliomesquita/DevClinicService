@@ -10,39 +10,24 @@ using System.Threading.Tasks;
 
 namespace DevClinicService.Application.Services.Implementations
 {
-    public class ServClinicService : IServClinicService
+    public class UserService : IUserService
     {
         private readonly DevClinicServiceContext _context;
-        public ServClinicService(DevClinicServiceContext context)
+        public UserService(DevClinicServiceContext context)
         {
             _context = context;
         }
-        public int Create(AddServiceInputModel model)
+        public int Create(AddUserInputModel model)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public List<UserViewModel> GetAll(string query)
         {
             throw new NotImplementedException();
         }
 
-        public void Finish(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ServiceViewModel> GetAll(string query)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ServiceDetailsViewModel GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Start(int id)
+        public UserViewModel GetById(int id)
         {
             throw new NotImplementedException();
         }

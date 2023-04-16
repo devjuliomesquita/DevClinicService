@@ -3,13 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevClinicService.API", "DevClinicService.API\DevClinicService.API.csproj", "{B22130A2-532C-427E-9D63-B3DF4DE177E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevClinicService.API", "DevClinicService.API\DevClinicService.API.csproj", "{B22130A2-532C-427E-9D63-B3DF4DE177E1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9045E907-DB28-4395-830B-7A23785A325A} = {9045E907-DB28-4395-830B-7A23785A325A}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevClinicService.Core", "DevClinicService.Core\DevClinicService.Core.csproj", "{9045E907-DB28-4395-830B-7A23785A325A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevClinicService.Core", "DevClinicService.Core\DevClinicService.Core.csproj", "{9045E907-DB28-4395-830B-7A23785A325A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevClinicService.Application", "DevClinicService.Application\DevClinicService.Application.csproj", "{A6F47363-F5A4-491A-B2B2-FC206A332B6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevClinicService.Application", "DevClinicService.Application\DevClinicService.Application.csproj", "{A6F47363-F5A4-491A-B2B2-FC206A332B6D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1A589480-4951-480F-AF75-270B9F559100} = {1A589480-4951-480F-AF75-270B9F559100}
+		{9045E907-DB28-4395-830B-7A23785A325A} = {9045E907-DB28-4395-830B-7A23785A325A}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevClinicService.Infrastructure", "DevClinicService.Infrastructure\DevClinicService.Infrastructure.csproj", "{1A589480-4951-480F-AF75-270B9F559100}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevClinicService.Infrastructure", "DevClinicService.Infrastructure\DevClinicService.Infrastructure.csproj", "{1A589480-4951-480F-AF75-270B9F559100}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
