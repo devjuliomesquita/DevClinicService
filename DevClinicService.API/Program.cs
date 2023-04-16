@@ -1,3 +1,5 @@
+using DevClinicService.Application.Services.Implementations;
+using DevClinicService.Application.Services.Interfaces;
 using DevClinicService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +12,7 @@ var conectionStrings = builder.Configuration.GetConnectionString("DataBase");
 builder.Services.AddDbContext<DevClinicServiceContext>(options =>
     options.UseSqlServer(conectionStrings));
 
+builder.Services.AddScoped<IServClinicService, ServClinicService>();
 //Injeção de dependência do padrão repository
 
 // Add services to the container.

@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevClinicService.Application.InputModels
+namespace DevClinicService.Application.ViewModels
 {
-    public record AddDoctorInputModel(
+    public record UserViewModel(
         string FirstName,
         string LastName,
-        string Email,
-        string CPF,
-        string Password)
+        string CPF)
     {
     }
 }

@@ -30,7 +30,7 @@ namespace DevClinicService.API.Controllers
             return Ok(client);
         }
         [HttpPost]
-        public IActionResult Post(AddClientInputModel model)
+        public IActionResult Post(AddUserInputModel model)
         {
             var client = new User(
                 model.FirstName,
@@ -42,7 +42,7 @@ namespace DevClinicService.API.Controllers
             return CreatedAtAction("GetById" , new {id = client.Id}, client);
         }
         [HttpPut("{id}")]
-        public IActionResult Put(int id, UpdateClientInputModel model)
+        public IActionResult Put(int id, UpdateUserInputModel model)
         {
             var client = _context.Users.Where(c => c.IsSpecialty == false).SingleOrDefault(c => c.Id == id);
             if (client == null) { NotFound(); }

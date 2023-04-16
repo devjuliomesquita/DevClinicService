@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace DevClinicService.Application.InputModels
 {
-    public record UpdateDoctorInputModel(
+    public record AddUserInputModel(
         string FirstName,
         string LastName,
         string Email,
         string CPF,
         string Password)
     {
+
     }
 }
