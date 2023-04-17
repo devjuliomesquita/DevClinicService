@@ -4,6 +4,7 @@ using DevClinicService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevClinicService.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DevClinicServiceContext))]
-    partial class DevClinicServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20230417065931_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,9 +81,12 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("IdUser");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Specialties");
                 });
@@ -149,11 +154,13 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("DevClinicService.Core.Entities.Specialty", b =>
                 {
-                    b.HasOne("DevClinicService.Core.Entities.User", null)
+                    b.HasOne("DevClinicService.Core.Entities.User", "User")
                         .WithMany("Specialties")
-                        .HasForeignKey("IdUser")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DevClinicService.Core.Entities.User", b =>

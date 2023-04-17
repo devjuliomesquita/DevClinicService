@@ -20,7 +20,7 @@ namespace DevClinicService.Core.Entities
             CreatedAt = DateTime.Now;
             Active = true;
             IsSpecialty = false;
-            Specialties = new List<UserSpecialty>();
+            Specialties = new List<Specialty>();
             ClientService = new List<Service>();
             DoctorService = new List<Service>();
         }
@@ -33,7 +33,7 @@ namespace DevClinicService.Core.Entities
         public DateTime CreatedAt { get; private set; }
         public bool Active { get; private set; }
         public bool IsSpecialty { get; private set; }
-        public List<UserSpecialty> Specialties { get; private set; }
+        public List<Specialty> Specialties { get; private set; }
         public List<Service> ClientService { get; private set; }
         public List<Service> DoctorService { get; private set; }
 

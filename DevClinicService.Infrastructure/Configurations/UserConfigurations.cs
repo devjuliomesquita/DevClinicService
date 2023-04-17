@@ -18,7 +18,7 @@ namespace DevClinicService.Infrastructure.Configurations
             builder
                 .HasMany(s => s.Specialties)
                 .WithOne()
-                .HasForeignKey(u => u.IdSpecialty)
+                .HasForeignKey(s => s.IdUser)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

@@ -18,12 +18,15 @@ namespace DevClinicService.Application.Services.Implementations
             _context = context;
         }
 
-        public int Create(AddSpecialtyInputModel model)
+
+        public int Create(int id, AddSpecialtyInputModel model)
         {
-            var specialty = new Specialty(model.Description);
-            _context.Specialties.Add(specialty);
+            var user = _context.Users.SingleOrDefault(u => u.Id == id);
+            if(user == null) { return -1; }
+            var userSpecilty = new Specialty(model.Description, user.Id);
+            _context.Specialties.Add(userSpecilty);
             _context.SaveChanges();
-            return specialty.Id;
+            return userSpecilty.Id;
         }
     }
 }

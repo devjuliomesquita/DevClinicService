@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DevClinicService.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/User/{id}/[controller]")]
     [ApiController]
     public class SpecialtyController : ControllerBase
     {
@@ -17,10 +17,9 @@ namespace DevClinicService.API.Controllers
             _iSpecialtyService = iSpecialtyService;
         }
         [HttpPost]
-        public IActionResult Post(AddSpecialtyInputModel model)
+        public IActionResult Post(int id, AddSpecialtyInputModel model)
         {
-            var specialty = _iSpecialtyService.Create(model);
-            if (specialty == null) { NotFound(); }
+            var specialty = _iSpecialtyService.Create(id, model);
             return Ok();
         }
     }

@@ -42,11 +42,17 @@ namespace DevClinicService.Application.Services.Implementations
             return userViewModel;
         }
 
-        public UserViewModel GetById(int id)
+        public UserDetailsViewModel GetById(int id)
         {
             var user = _context.Users.SingleOrDefault(u => u.Id == id);
             if(user == null) { return null; }
-            return new UserViewModel(user.FirstName, user.LastName, user.CPF);
+            var specialty = _context.Specialties.SingleOrDefault(s => s.IdUser == id);
+            return new UserDetailsViewModel(
+                user.FirstName, 
+                user.LastName, 
+                user.Email,
+                user.CPF,
+                specialty!.Description);
         }
 
         public void Update(int id, UpdateUserInputModel model)

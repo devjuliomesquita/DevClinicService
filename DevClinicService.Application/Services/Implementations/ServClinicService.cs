@@ -23,7 +23,7 @@ namespace DevClinicService.Application.Services.Implementations
         {
             var token = Guid.NewGuid().ToString("N").ToUpper()[..6];
             var service = new Service(
-                model.IdCLient,
+                model.IdClient,
                 model.IdDoctor,
                 token);
             _context.Services.Add(service);

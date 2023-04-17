@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevClinicService.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DevClinicServiceContext))]
-    [Migration("20230416211403_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230417073607_Migration2")]
+    partial class Migration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,7 +78,12 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("IdUser")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("IdUser");
 
                     b.ToTable("Specialties");
                 });
@@ -125,27 +130,6 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DevClinicService.Core.Entities.UserSpecialty", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("IdSpecialty")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdSpecialty");
-
-                    b.ToTable("UserSpecialties");
-                });
-
             modelBuilder.Entity("DevClinicService.Core.Entities.Service", b =>
                 {
                     b.HasOne("DevClinicService.Core.Entities.User", "Client")
@@ -165,11 +149,11 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("DevClinicService.Core.Entities.UserSpecialty", b =>
+            modelBuilder.Entity("DevClinicService.Core.Entities.Specialty", b =>
                 {
                     b.HasOne("DevClinicService.Core.Entities.User", null)
                         .WithMany("Specialties")
-                        .HasForeignKey("IdSpecialty")
+                        .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

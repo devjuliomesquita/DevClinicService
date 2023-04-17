@@ -9,6 +9,6 @@ namespace DevClinicService.Application.Services.Interfaces
 {
     public interface ISpecialtyService
     {
-        int Create(AddSpecialtyInputModel model);
+        int Create(int id, AddSpecialtyInputModel model);
     }
 }

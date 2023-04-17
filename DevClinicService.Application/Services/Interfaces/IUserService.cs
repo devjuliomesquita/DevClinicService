@@ -11,7 +11,7 @@ namespace DevClinicService.Application.Services.Interfaces
     public interface IUserService
     {
         List<UserViewModel> GetAll(string query);
-        UserViewModel GetById(int id);
+        UserDetailsViewModel GetById(int id);
         int Create(AddUserInputModel model);
         void Update(int id, UpdateUserInputModel model);
         void Delete(int id);

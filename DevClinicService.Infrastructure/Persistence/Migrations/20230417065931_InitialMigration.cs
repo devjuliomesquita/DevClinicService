@@ -10,20 +10,6 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Specialties",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Specialties", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -75,20 +61,22 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserSpecialties",
+                name: "Specialties",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdUser = table.Column<int>(type: "int", nullable: false),
-                    IdSpecialty = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserSpecialties", x => x.Id);
+                    table.PrimaryKey("PK_Specialties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserSpecialties_Users_IdSpecialty",
-                        column: x => x.IdSpecialty,
+                        name: "FK_Specialties_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -105,9 +93,9 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
                 column: "IdDoctor");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserSpecialties_IdSpecialty",
-                table: "UserSpecialties",
-                column: "IdSpecialty");
+                name: "IX_Specialties_UserId",
+                table: "Specialties",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -117,9 +105,6 @@ namespace DevClinicService.Infrastructure.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Specialties");
-
-            migrationBuilder.DropTable(
-                name: "UserSpecialties");
 
             migrationBuilder.DropTable(
                 name: "Users");
