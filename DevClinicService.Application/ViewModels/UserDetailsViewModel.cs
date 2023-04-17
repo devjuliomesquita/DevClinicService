@@ -12,6 +12,7 @@ namespace DevClinicService.Application.ViewModels
         string LastName,
         string Email,
         string CPF,
+        bool Active,
         string Specialty
         )
     {

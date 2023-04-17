@@ -37,6 +37,7 @@ namespace DevClinicService.Application.Services.Implementations
         {
             var user = _context.Users;
             var userViewModel = user
+                .Where(u => u.Active ==  true)
                 .Select(uv => new UserViewModel(uv.FirstName, uv.LastName, uv.CPF))
                 .ToList();
             return userViewModel;
@@ -44,15 +45,25 @@ namespace DevClinicService.Application.Services.Implementations
 
         public UserDetailsViewModel GetById(int id)
         {
+            string description = "";
             var user = _context.Users.SingleOrDefault(u => u.Id == id);
             if(user == null) { return null; }
             var specialty = _context.Specialties.SingleOrDefault(s => s.IdUser == id);
+            if(specialty == null) 
+            { 
+                description = "Sem Especialidade."; 
+            }
+            else
+            {
+                description = specialty.Description;
+            }
             return new UserDetailsViewModel(
                 user.FirstName, 
                 user.LastName, 
                 user.Email,
                 user.CPF,
-                specialty!.Description);
+                user.Active,
+                description);
         }
 
         public void Update(int id, UpdateUserInputModel model)
