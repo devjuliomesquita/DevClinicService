@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace DevClinicService.Application.InputModels
 {
     public record AddServiceInputModel(
-        int IdClient,
         int IdDoctor
         )
     {

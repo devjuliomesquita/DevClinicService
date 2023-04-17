@@ -19,11 +19,12 @@ namespace DevClinicService.Application.Services.Implementations
         {
             _context = context;
         }
-        public int Create(AddServiceInputModel model)
+        public int Create(int id, AddServiceInputModel model)
         {
+            var user = _context.Users.SingleOrDefault(u => u.Id == id);
             var token = Guid.NewGuid().ToString("N").ToUpper()[..6];
             var service = new Service(
-                model.IdClient,
+                user!.Id,
                 model.IdDoctor,
                 token);
             _context.Services.Add(service);

@@ -12,7 +12,7 @@ namespace DevClinicService.Application.Services.Interfaces
     {
         List<ServiceViewModel> GetAll(string query);
         ServiceDetailsViewModel GetById(int id);
-        int Create(AddServiceInputModel model);
+        int Create(int id, AddServiceInputModel model);
         void Delete(int id);
         void Start(int id);
         void Finish(int id);

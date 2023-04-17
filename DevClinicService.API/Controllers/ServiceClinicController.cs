@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace DevClinicService.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Services")]
     [ApiController]
     public class ServiceClinicController : ControllerBase
     {
@@ -31,13 +31,14 @@ namespace DevClinicService.API.Controllers
             if(service == null) { return NotFound(); }
             return Ok(service);
         }
+        [Route("api/Services/User/{id}/Service")]
         [HttpPost]
-        public IActionResult Post([FromBody] AddServiceInputModel model)
+        public IActionResult Post(int id, [FromBody] AddServiceInputModel model)
         {
 
-            var id = _servClinicService.Create(model);
+            var idServ = _servClinicService.Create(id, model);
 
-            return CreatedAtAction(nameof(GetById), new {Id = id }, model);
+            return CreatedAtAction(nameof(GetById), new {Id = idServ }, model);
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
