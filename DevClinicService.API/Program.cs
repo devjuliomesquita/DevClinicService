@@ -13,6 +13,7 @@ builder.Services.AddDbContext<DevClinicServiceContext>(options =>
     options.UseSqlServer(conectionStrings));
 
 builder.Services.AddScoped<IServClinicService, ServClinicService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 //Injeção de dependência do padrão repository
 

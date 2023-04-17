@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace DevClinicService.Application.InputModels
 {
     public record UpdateUserInputModel(
+        int Id,
         string FirstName,
         string LastName,
         string Email,

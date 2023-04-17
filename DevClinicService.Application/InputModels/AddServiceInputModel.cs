@@ -8,8 +8,8 @@ namespace DevClinicService.Application.InputModels
 {
     public record AddServiceInputModel(
         int IdCLient,
-        int IdDoctor,
-        string TokenService)
+        int IdDoctor
+        )
     {
     }
 }

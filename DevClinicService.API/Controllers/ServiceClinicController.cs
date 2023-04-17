@@ -1,4 +1,5 @@
 ﻿using DevClinicService.Application.InputModels;
+using DevClinicService.Application.Services.Interfaces;
 using DevClinicService.Core.Entities;
 using DevClinicService.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Http;
@@ -11,39 +12,50 @@ namespace DevClinicService.API.Controllers
     [ApiController]
     public class ServiceClinicController : ControllerBase
     {
-        private readonly DevClinicServiceContext _context;
-        public ServiceClinicController(DevClinicServiceContext context)
+        private readonly IServClinicService _servClinicService;
+        public ServiceClinicController(IServClinicService servClinicService)
         {
-            _context = context;
+            _servClinicService = servClinicService;
         }
+
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(string query)
         {
-            var services = _context.Services;
+            var services = _servClinicService.GetAll(query);
             return Ok(services);
         }
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var service = _context.Services.SingleOrDefault(s => s.Id == id);
+            var service = _servClinicService.GetById(id);
             if(service == null) { return NotFound(); }
             return Ok(service);
         }
         [HttpPost]
-        public IActionResult Post(AddServiceInputModel model)
+        public IActionResult Post([FromBody] AddServiceInputModel model)
         {
-            var token = "123";
-            var service = new Service(
-                model.IdCLient,
-                model.IdDoctor,
-                token);
-            _context.Services.Add(service);
-            return Ok();
+
+            var id = _servClinicService.Create(model);
+
+            return CreatedAtAction(nameof(GetById), new {Id = id }, model);
         }
-        [HttpPut("id")]
-        public IActionResult Put(int id)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteById(int id)
         {
-            return Ok();
+            _servClinicService.Delete(id);
+            return NoContent();
+        }
+        [HttpPut("{id}/Start")]
+        public IActionResult Start(int id)
+        {
+            _servClinicService.Start(id);
+            return NoContent();
+        }
+        [HttpPut("{id}/Finish")]
+        public IActionResult Finish(int id)
+        {
+            _servClinicService.Finish(id);
+            return NoContent();
         }
     }
 }

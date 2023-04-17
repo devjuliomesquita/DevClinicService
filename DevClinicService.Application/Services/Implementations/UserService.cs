@@ -41,5 +41,17 @@ namespace DevClinicService.Application.Services.Implementations
             if(user == null) { return null; }
             return new UserViewModel(user.FirstName, user.LastName, user.CPF);
         }
+
+        public void Update(int id, UpdateUserInputModel model)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Id == id);
+            user!.Update(
+                model.FirstName,
+                model.LastName,
+                model.Email,
+                model.CPF,
+                model.Password);
+            _context.SaveChanges();
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace DevClinicService.Application.Services.Interfaces
         List<UserViewModel> GetAll(string query);
         UserViewModel GetById(int id);
         int Create(AddUserInputModel model);
+        void Update(int id, UpdateUserInputModel model);
         
     }
 }
