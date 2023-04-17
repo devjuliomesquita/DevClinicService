@@ -1,7 +1,9 @@
 ﻿using DevClinicService.Application.InputModels;
 using DevClinicService.Application.Services.Interfaces;
 using DevClinicService.Application.ViewModels;
+using DevClinicService.Core.Entities;
 using DevClinicService.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,32 +21,62 @@ namespace DevClinicService.Application.Services.Implementations
         }
         public int Create(AddServiceInputModel model)
         {
-            throw new NotImplementedException();
+            var token = Guid.NewGuid().ToString("N").ToUpper()[..6];
+            var service = new Service(
+                model.IdCLient,
+                model.IdDoctor,
+                token);
+            _context.Services.Add(service);
+            _context.SaveChanges();
+            return service.Id;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var service = _context.Services.SingleOrDefault(s => s.Id == id);
+            service!.Cancel();
+            _context.SaveChanges();
         }
 
         public void Finish(int id)
         {
-            throw new NotImplementedException();
+            var service = _context.Services.SingleOrDefault(s => s.Id == id);
+            service!.Finish();
+            _context.SaveChanges();
         }
 
         public List<ServiceViewModel> GetAll(string query)
         {
-            throw new NotImplementedException();
+            var services = _context.Services;
+            var serviceViewModel = services
+                .Select(s => new ServiceViewModel(s.Id, s.TokenService, s.CreatedAt))
+                .ToList();
+            return serviceViewModel;
         }
 
         public ServiceDetailsViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            var service = _context.Services
+                .Include(p => p.Client)
+                .Include(p => p.Doctor)
+                .SingleOrDefault(p => p.Id == id);
+            if(service == null) { return null; }
+            var serviceDetailsViewModel = new ServiceDetailsViewModel(
+                service.Id,
+                service.TokenService,
+                service.CreatedAt,
+                service.FinishedAt,
+                service.Client!.FirstName,
+                service.Doctor!.FirstName,
+                service.Status.ToString());
+            return serviceDetailsViewModel;
         }
 
         public void Start(int id)
         {
-            throw new NotImplementedException();
+            var service = _context.Services.SingleOrDefault(s => s.Id == id);
+            service!.Start();
+            _context.SaveChanges();
         }
     }
 }

@@ -13,7 +13,6 @@ namespace DevClinicService.Application.ViewModels
         DateTime FinishedAt,
         string Client,
         string Doctor,
-        string Specialty,
         string Status)
     {
     }

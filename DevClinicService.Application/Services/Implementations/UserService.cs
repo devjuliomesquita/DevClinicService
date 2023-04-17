@@ -1,6 +1,7 @@
 ﻿using DevClinicService.Application.InputModels;
 using DevClinicService.Application.Services.Interfaces;
 using DevClinicService.Application.ViewModels;
+using DevClinicService.Core.Entities;
 using DevClinicService.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,10 @@ namespace DevClinicService.Application.Services.Implementations
         }
         public int Create(AddUserInputModel model)
         {
-            throw new NotImplementedException();
+            var user = new User(model.FirstName, model.LastName, model.Email, model.CPF, model.Password);
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            return user.Id;
         }
 
         public List<UserViewModel> GetAll(string query)
@@ -29,7 +33,9 @@ namespace DevClinicService.Application.Services.Implementations
 
         public UserViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.SingleOrDefault(u => u.Id == id);
+            if(user == null) { return null; }
+            return new UserViewModel(user.FirstName, user.LastName, user.CPF);
         }
     }
 }
