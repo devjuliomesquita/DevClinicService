@@ -28,7 +28,11 @@ namespace DevClinicService.Application.Services.Implementations
 
         public List<UserViewModel> GetAll(string query)
         {
-            throw new NotImplementedException();
+            var user = _context.Users;
+            var userViewModel = user
+                .Select(uv => new UserViewModel(uv.FirstName, uv.LastName, uv.CPF))
+                .ToList();
+            return userViewModel;
         }
 
         public UserViewModel GetById(int id)
