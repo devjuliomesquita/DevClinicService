@@ -26,6 +26,13 @@ namespace DevClinicService.Application.Services.Implementations
             return user.Id;
         }
 
+        public void Delete(int id)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            user!.UserCancel();
+            _context.SaveChanges();
+        }
+
         public List<UserViewModel> GetAll(string query)
         {
             var user = _context.Users;

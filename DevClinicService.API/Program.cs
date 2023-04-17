@@ -14,6 +14,7 @@ builder.Services.AddDbContext<DevClinicServiceContext>(options =>
 
 builder.Services.AddScoped<IServClinicService, ServClinicService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ISpecialtyService, SpecialtyService>();
 
 //Injeção de dependência do padrão repository
 

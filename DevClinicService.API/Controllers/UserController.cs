@@ -42,5 +42,11 @@ namespace DevClinicService.API.Controllers
             _userService.Update(id, model);
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public IActionResult UserCancel(int id)
+        {
+            _userService.Delete(id);
+            return NoContent();
+        }
     }
 }

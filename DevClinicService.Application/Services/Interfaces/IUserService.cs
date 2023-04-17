@@ -14,6 +14,7 @@ namespace DevClinicService.Application.Services.Interfaces
         UserViewModel GetById(int id);
         int Create(AddUserInputModel model);
         void Update(int id, UpdateUserInputModel model);
+        void Delete(int id);
         
     }
 }
