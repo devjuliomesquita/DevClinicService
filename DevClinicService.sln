@@ -18,6 +18,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevClinicService.Applicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevClinicService.Infrastructure", "DevClinicService.Infrastructure\DevClinicService.Infrastructure.csproj", "{1A589480-4951-480F-AF75-270B9F559100}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{C6B07B15-E130-483E-B5AA-EE08BA4CD067}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{F4BD429D-7DCE-445D-9808-49A7E2C8E4F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infrastructure", "2 - Infrastructure", "{5159B753-F177-4F54-B911-19B89E91BCDC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Application", "3 - Application", "{246C6FAF-76AB-4250-91A3-65F683CD8D22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1 - Data", "2.1 - Data", "{0EE2E17F-9E4C-4B93-A43E-2C21E9A3D1DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.2 - Cross Cuting", "2.2 - Cross Cuting", "{FD8E729E-A658-403F-A3B2-7ACA7BE5977F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +55,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B22130A2-532C-427E-9D63-B3DF4DE177E1} = {C6B07B15-E130-483E-B5AA-EE08BA4CD067}
+		{9045E907-DB28-4395-830B-7A23785A325A} = {F4BD429D-7DCE-445D-9808-49A7E2C8E4F5}
+		{A6F47363-F5A4-491A-B2B2-FC206A332B6D} = {246C6FAF-76AB-4250-91A3-65F683CD8D22}
+		{1A589480-4951-480F-AF75-270B9F559100} = {0EE2E17F-9E4C-4B93-A43E-2C21E9A3D1DB}
+		{0EE2E17F-9E4C-4B93-A43E-2C21E9A3D1DB} = {5159B753-F177-4F54-B911-19B89E91BCDC}
+		{FD8E729E-A658-403F-A3B2-7ACA7BE5977F} = {5159B753-F177-4F54-B911-19B89E91BCDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80E86171-17C6-4EE9-BEEA-4BFA7F8F25CC}
